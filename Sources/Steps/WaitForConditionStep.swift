@@ -13,7 +13,7 @@ import Foundation
 public class WaitForConditionStep: Step {
 
     private enum Constants {
-        static let refreshInterval: TimeInterval = 0.1
+        static let refreshInterval: TimeInterval = 0.5
     }
 
     private var assertionName: String
