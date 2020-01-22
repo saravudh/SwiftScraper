@@ -13,7 +13,7 @@ import Foundation
 public class WaitForConditionStep: Step {
 
     private enum Constants {
-        static let refreshInterval: TimeInterval = 0.5
+        static let refreshInterval: TimeInterval = 1.0
     }
 
     private var assertionName: String
@@ -24,6 +24,7 @@ public class WaitForConditionStep: Step {
     private weak var browser: Browser?
     private var model: JSON?
     private var completion: StepCompletionCallback?
+    private let dispatchGroup = DispatchGroup()
 
     /// Initializer.
     ///
@@ -52,8 +53,19 @@ public class WaitForConditionStep: Step {
             switch result {
             case .success(let ok):
                 if ok as? Bool ?? false {
-                    this.reset()
-                    completion(.proceed(model))
+                   var htmlData = ""
+                    if let webView = this.browser?.webView {
+                        this.dispatchGroup.enter()
+                        webView.evaluateJavaScript("document.documentElement.outerHTML.toString()",
+                                                   completionHandler: { (html: Any?, error: Error?) in
+                                                    htmlData = (html as? String) ?? ""
+                                                    this.dispatchGroup.leave()
+                        })
+                    }
+                    this.dispatchGroup.notify(queue: .main) {
+                        this.reset()
+                        completion(.proceed(["html": htmlData]))
+                    }
                 } else {
                     if Date().timeIntervalSince(startRunDate) > this.timeoutInSeconds {
                         this.reset()
