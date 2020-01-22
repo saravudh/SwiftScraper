@@ -6,10 +6,10 @@ Pod::Spec.new do |s|
 Framework that makes it easy to integrate and orchestrate screen scraping with your Swift iOS app.
                        DESC
 
-  s.homepage         = 'https://github.com/cweatureapps/SwiftScraper'
+  s.homepage         = 'https://github.com/saravudh/SwiftScraper'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'cweatureapps' => 'cweatureapps@gmail.com' }
-  s.source           = { :git => 'https://github.com/cweatureapps/SwiftScraper.git', :tag => s.version.to_s }
+  s.author           = { 'saravudh' => '2saravudh@gmail.com' }
+  s.source           = { :git => 'https://github.com/saravudh/SwiftScraper.git', :tag => s.version.to_s }
   s.resource_bundles = { "SwiftScraper" => ["Resources/**/*.{js}"] }
   s.ios.deployment_target = '8.0'
   s.source_files = 'Sources/**/*.{h,m,swift}'
