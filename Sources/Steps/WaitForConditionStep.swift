@@ -17,6 +17,7 @@ public class WaitForConditionStep: Step {
     }
 
     private var assertionName: String
+    private var params: [Any]
     private var timeoutInSeconds: TimeInterval
     private var timer: Timer?
 
@@ -30,7 +31,8 @@ public class WaitForConditionStep: Step {
     ///
     /// - parameter assertionName: Name of JavaScript function that evaluates the conditions and returns a Boolean.
     /// - parameter timeoutInSeconds: The number of seconds before the step fails due to timeout.
-    public init(assertionName: String, timeoutInSeconds: TimeInterval) {
+    public init(assertionName: String, params: [Any] = [], timeoutInSeconds: TimeInterval) {
+        self.params = params
         self.assertionName = assertionName
         self.timeoutInSeconds = timeoutInSeconds
     }
@@ -48,7 +50,7 @@ public class WaitForConditionStep: Step {
             let browser = browser,
             let model = model,
             let completion = completion else { return }
-        browser.runScript(functionName: assertionName) { [weak self] result in
+        browser.runScript(functionName: assertionName, params: params) { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success(let ok):
