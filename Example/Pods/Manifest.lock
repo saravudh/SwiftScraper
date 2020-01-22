@@ -1,0 +1,23 @@
+PODS:
+  - KVOSwift (0.0.1)
+  - SwiftScraper (0.3.0):
+    - KVOSwift
+
+DEPENDENCIES:
+  - SwiftScraper (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - KVOSwift
+
+EXTERNAL SOURCES:
+  SwiftScraper:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KVOSwift: 3b8ae2af51a1c6ca64d8fcbaa224814f3f118ec1
+  SwiftScraper: de33e68814d619d11e6288be1151cb541704f7d5
+
+PODFILE CHECKSUM: 3e53200787477fb937ad0730fd16c2d5de2a41d7
+
+COCOAPODS: 1.9.0.beta.2

@@ -14,5 +14,5 @@ Framework that makes it easy to integrate and orchestrate screen scraping with y
   s.ios.deployment_target = '8.0'
   s.source_files = 'Sources/**/*.{h,m,swift}'
   s.frameworks = 'UIKit', 'WebKit'
-  s.dependency 'Observable-Swift', '~> 0.7'
+  s.dependency 'KVOSwift'
 end
